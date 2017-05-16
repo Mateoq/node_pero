@@ -1,0 +1,15 @@
+{
+  "name": "node-pero",
+  "version": "0.1.0",
+  "description": "Simple code deployment tool for personal use",
+  "main": "index.js",
+  "repository": "https://github.com/Mateoq/node_pero",
+  "author": "Mateoq",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "rxjs": "^5.4.0"
+  }
+}
