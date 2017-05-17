@@ -1,3 +1,4 @@
+const { Observable } = require('rxjs');
 const fromChildProcess = require('./stream');
 
 // First Approach.
@@ -27,7 +28,24 @@ const fromChildProcess = require('./stream');
 
 // Observable Approach 2.
 // ========================
-fromChildProcess('node', ['test-logs.js'])
+// fromChildProcess('node', ['test-logs.js'])
+//   .subscribe(
+//     (data) => { console.log(data.toString()) },
+//     (err) => { console.log(err.toString()) }
+//   );
+
+// Observable Approach 3(Arrays).
+// ========================
+const commands = [
+  ['node', ['test-logs.js']],
+  ['node', ['test-logs.js']],
+];
+
+Observable.from(commands)
+  .concatMap((payload) => {
+    const [command, args] = payload;
+    return fromChildProcess(command, args);
+  })
   .subscribe(
     (data) => { console.log(data.toString()) },
     (err) => { console.log(err.toString()) }
